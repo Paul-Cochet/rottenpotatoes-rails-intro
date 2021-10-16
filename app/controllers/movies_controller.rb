@@ -20,10 +20,10 @@ class MoviesController < ApplicationController
       @title_sort = ''
       @date_sort = ''
     if (params[:sort] == 'title')
-      @title_sort = 'bhilite bg-warning'
+      @title_sort = 'hilite bg-warning'
       @movies = Movie.with_ratings(params[:ratings]).order(params[:sort])
     elsif (params[:sort] == 'date')
-      @date_sort = 'bhilite bg-warning'
+      @date_sort = 'hilite bg-warning'
       @movies = Movie.with_ratings(params[:ratings]).sort_by{|movie| movie.release_date}
     else
       @movies = Movie.with_ratings(params[:ratings])
