@@ -16,9 +16,17 @@
 <table class="table table-striped col-md-12" id="movies">
   <thead>
     <tr>
-      <th>Movie Title</th>
+      <th>
+        <a id='title_header'>
+          <%= link_to "Movie Title", movies_path(Hash[:sort=>'title', :ratings=>Hash[@ratings_to_show.map {|rating| [rating,1]}]])%>
+        </a>
+      </th>
       <th>Rating</th>
-      <th>Release Date</th>
+      <th>
+        <a id='release_date_header'>
+          <%= link_to "Release Date", movies_path(Hash[:sort=>"date", :ratings=>Hash[@ratings_to_show.map {|rating| [rating,1]}]])%>
+        </a>
+      </th>
       <th>More Info</th>
     </tr>
   </thead>
