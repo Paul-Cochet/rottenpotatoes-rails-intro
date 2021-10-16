@@ -7,6 +7,17 @@ class MoviesController < ApplicationController
   end
 
   def index
+#     if (not params.present? and session.present?)
+#       params[:ratings] = session[:ratings]
+#       params[:sort] = session[:sort]
+#     end
+    if (session[:is_set].present? and params[:commit] != "Refresh" and not params[:sort].present?)
+      params[:ratings] = session[:ratings]
+      params[:sort] = session[:sort]
+    end
+#     if () 
+#       params[:ratings] = Hash['PG'=>1]
+#     end
     if (params[:sort] != 'date')
       @movies = Movie.with_ratings(params[:ratings]).order(params[:sort])
     elsif (params[:sort] == 'date')
@@ -16,6 +27,9 @@ class MoviesController < ApplicationController
     end
     @all_ratings = Movie.all_ratings
     @ratings_to_show = params[:ratings] != nil ? params[:ratings].keys : []
+    session[:ratings] = params[:ratings]
+    session[:sort] = params[:sort]
+    session[:is_set] = 1
   end
 
   def new
